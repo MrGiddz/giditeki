@@ -73,8 +73,9 @@ export default function StartupsPage() {
     <div className="container mx-auto px-4 py-12 sm:py-20">
       <motion.div
         className="text-center"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
+        initial="hidden"
+        animate="visible"
+        variants={itemVariants}
         transition={{ duration: 0.8 }}
       >
         <h1 className="text-3xl font-bold tracking-tight text-primary sm:text-4xl lg:text-5xl">
@@ -89,7 +90,7 @@ export default function StartupsPage() {
         className="mt-16"
         variants={sectionVariants}
         initial="hidden"
-        whileInView="visible"
+        animate="visible"
         viewport={{ once: true, amount: 0.1 }}
       >
         <motion.div
@@ -118,7 +119,7 @@ export default function StartupsPage() {
         className="mt-20 py-20 sm:py-24 bg-card rounded-lg glow-border"
         variants={sectionVariants}
         initial="hidden"
-        whileInView="visible"
+        animate="visible"
         viewport={{ once: true, amount: 0.1 }}
       >
         <div className="container mx-auto px-4">
@@ -146,7 +147,7 @@ export default function StartupsPage() {
         className="mt-20 text-center"
         variants={sectionVariants}
         initial="hidden"
-        whileInView="visible"
+        animate="visible"
         viewport={{ once: true, amount: 0.1 }}
       >
          <h2 className="text-3xl font-bold tracking-tight text-primary sm:text-4xl">Ready to build the future?</h2>

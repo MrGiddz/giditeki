@@ -91,8 +91,9 @@ export default function PortfolioPage() {
     <div className="container mx-auto px-4 py-12 sm:py-20">
       <motion.div
         className="text-center"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
+        initial="hidden"
+        animate="visible"
+        variants={itemVariants}
         transition={{ duration: 0.8 }}
       >
         <h1 className="text-3xl font-bold tracking-tight text-primary sm:text-4xl">
@@ -107,7 +108,7 @@ export default function PortfolioPage() {
         className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3"
         variants={listVariants}
         initial="hidden"
-        whileInView="visible"
+        animate="visible"
         viewport={{ once: true, amount: 0.1 }}
       >
         {projects.map((project) => (

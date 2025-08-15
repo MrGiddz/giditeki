@@ -155,8 +155,9 @@ export default function BlogPage() {
     <div className="container mx-auto px-4 py-12 sm:py-20">
       <motion.div
         className="text-center"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
+        initial="hidden"
+        animate="visible"
+        variants={itemVariants}
         transition={{ duration: 0.8 }}
       >
         <h1 className="text-3xl font-bold tracking-tight text-primary sm:text-4xl">
@@ -171,20 +172,14 @@ export default function BlogPage() {
         className="mt-12 max-w-4xl mx-auto grid gap-16"
         variants={sectionVariants}
         initial="hidden"
-        whileInView="visible"
+        animate="visible"
         viewport={{ once: true, amount: 0.1 }}
       >
         <div>
           <h2 className="text-2xl font-bold tracking-tight text-primary sm:text-3xl mb-8">
             Latest Articles
           </h2>
-          <motion.div
-            className="grid gap-8"
-            variants={listVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
-          >
+          <motion.div className="grid gap-8" variants={listVariants}>
             {blogPosts.map((post) => (
               <motion.div key={post.slug} variants={itemVariants}>
                 <Link href={`/blog/${post.slug}`} className="group">

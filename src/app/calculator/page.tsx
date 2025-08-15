@@ -122,8 +122,9 @@ export default function CalculatorPage() {
     <div className="container mx-auto max-w-4xl px-4 py-12 sm:py-20">
       <motion.div
         className="text-center"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
+        initial="hidden"
+        animate="visible"
+        variants={itemVariants}
         transition={{ duration: 0.8 }}
       >
         <h1 className="text-3xl font-bold tracking-tight text-primary sm:text-4xl">
@@ -246,8 +247,9 @@ export default function CalculatorPage() {
         <div className="lg:col-span-1">
           <motion.div 
             className="sticky top-24"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
+            initial="hidden"
+            animate="visible"
+            variants={itemVariants}
             transition={{ duration: 0.5, delay: 0.8 }}
           >
             <Card className="glow-border-always-on">
