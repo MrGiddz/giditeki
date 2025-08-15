@@ -1,4 +1,4 @@
-'use server';
+"use server";
 
 /**
  * @fileOverview An AI chatbot assistant for answering website visitor questions about company services.
@@ -8,30 +8,36 @@
  * - AIChatbotAssistantOutput - The return type for the aiChatbotAssistant function.
  */
 
-import {ai} from '@/ai/genkit';
-import {z} from 'genkit';
+import { ai } from "@/ai/genkit";
+import { z } from "genkit";
 
 const AIChatbotAssistantInputSchema = z.object({
-  query: z.string().describe('The user query or question.'),
+  query: z.string().describe("The user query or question."),
 });
-export type AIChatbotAssistantInput = z.infer<typeof AIChatbotAssistantInputSchema>;
+export type AIChatbotAssistantInput = z.infer<
+  typeof AIChatbotAssistantInputSchema
+>;
 
 const AIChatbotAssistantOutputSchema = z.object({
-  response: z.string().describe('The chatbot response to the user query.'),
+  response: z.string().describe("The chatbot response to the user query."),
 });
-export type AIChatbotAssistantOutput = z.infer<typeof AIChatbotAssistantOutputSchema>;
+export type AIChatbotAssistantOutput = z.infer<
+  typeof AIChatbotAssistantOutputSchema
+>;
 
-export async function aiChatbotAssistant(input: AIChatbotAssistantInput): Promise<AIChatbotAssistantOutput> {
+export async function aiChatbotAssistant(
+  input: AIChatbotAssistantInput
+): Promise<AIChatbotAssistantOutput> {
   return aiChatbotAssistantFlow(input);
 }
 
 const prompt = ai.definePrompt({
-  name: 'aiChatbotAssistantPrompt',
-  input: {schema: AIChatbotAssistantInputSchema},
-  output: {schema: AIChatbotAssistantOutputSchema},
-  prompt: `You are a helpful AI chatbot assistant for Apex Digital, an IT consulting and software development company. Your goal is to answer user questions about the company's services and direct them to the appropriate resources or contact forms.
+  name: "aiChatbotAssistantPrompt",
+  input: { schema: AIChatbotAssistantInputSchema },
+  output: { schema: AIChatbotAssistantOutputSchema },
+  prompt: `You are a helpful AI chatbot assistant for ApexTek, an IT consulting and software development company. Your goal is to answer user questions about the company's services and direct them to the appropriate resources or contact forms.
 
-  Company Description: Apex Digital is an IT consulting firm and a software development company. We provide client services (custom web & mobile app development, enterprise software solutions, IT infrastructure consulting, cloud solutions, and ongoing technical support). We also develop our own internal projects and custom tools that can be sold or offered as SaaS products. Our style is modern, minimal, and tech-forward.
+  Company Description: ApexTek is an IT consulting firm and a software development company. We provide client services (custom web & mobile app development, enterprise software solutions, IT infrastructure consulting, cloud solutions, and ongoing technical support). We also develop our own internal projects and custom tools that can be sold or offered as SaaS products. Our style is modern, minimal, and tech-forward.
 
   User Query: {{{query}}}
 
@@ -41,12 +47,12 @@ const prompt = ai.definePrompt({
 
 const aiChatbotAssistantFlow = ai.defineFlow(
   {
-    name: 'aiChatbotAssistantFlow',
+    name: "aiChatbotAssistantFlow",
     inputSchema: AIChatbotAssistantInputSchema,
     outputSchema: AIChatbotAssistantOutputSchema,
   },
-  async input => {
-    const {output} = await prompt(input);
+  async (input) => {
+    const { output } = await prompt(input);
     return output!;
   }
 );

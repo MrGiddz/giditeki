@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { generateBlogPost } from '@/ai/flows/generate-blog-post';
-import { Button } from '@/components/ui/button';
+import { generateBlogPost } from "@/ai/flows/generate-blog-post";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -9,32 +9,35 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { useToast } from '@/hooks/use-toast';
-import { Lightbulb, Loader2 } from 'lucide-react';
-import Link from 'next/link';
-import * as React from 'react';
-import { motion } from 'framer-motion';
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { useToast } from "@/hooks/use-toast";
+import { Lightbulb, Loader2 } from "lucide-react";
+import Link from "next/link";
+import * as React from "react";
+import { motion } from "framer-motion";
 
 const blogPosts = [
   {
-    slug: 'cloud-migration-strategies',
-    title: '5 Essential Cloud Migration Strategies for 2024',
-    description: 'Migrating to the cloud can be complex. Here are five key strategies to ensure a smooth and successful transition for your business.',
-    date: 'July 15, 2024',
+    slug: "cloud-migration-strategies",
+    title: "5 Essential Cloud Migration Strategies for 2024",
+    description:
+      "Migrating to the cloud can be complex. Here are five key strategies to ensure a smooth and successful transition for your business.",
+    date: "July 15, 2024",
   },
   {
-    slug: 'saas-development-guide',
-    title: 'The Ultimate Guide to Building a Scalable SaaS Product',
-    description: 'From architecture to monetization, we cover the essential steps and best practices for developing a successful SaaS application.',
-    date: 'July 1, 2024',
+    slug: "saas-development-guide",
+    title: "The Ultimate Guide to Building a Scalable SaaS Product",
+    description:
+      "From architecture to monetization, we cover the essential steps and best practices for developing a successful SaaS application.",
+    date: "July 1, 2024",
   },
-   {
-    slug: 'it-consulting-roi',
-    title: 'Maximizing ROI with an IT Consulting Partnership',
-    description: 'Learn how strategic IT consulting can drive innovation, improve efficiency, and deliver a significant return on investment.',
-    date: 'June 20, 2024',
+  {
+    slug: "it-consulting-roi",
+    title: "Maximizing ROI with an IT Consulting Partnership",
+    description:
+      "Learn how strategic IT consulting can drive innovation, improve efficiency, and deliver a significant return on investment.",
+    date: "June 20, 2024",
   },
 ];
 
@@ -45,7 +48,7 @@ const sectionVariants = {
     y: 0,
     transition: {
       duration: 0.6,
-      ease: 'easeOut',
+      ease: "easeOut",
     },
   },
 };
@@ -71,9 +74,8 @@ const itemVariants = {
   },
 };
 
-
 function BlogIdeaGenerator() {
-  const [topic, setTopic] = React.useState('');
+  const [topic, setTopic] = React.useState("");
   const [ideas, setIdeas] = React.useState<string[]>([]);
   const [isLoading, setIsLoading] = React.useState(false);
   const { toast } = useToast();
@@ -82,9 +84,9 @@ function BlogIdeaGenerator() {
     e.preventDefault();
     if (!topic.trim()) {
       toast({
-        variant: 'destructive',
-        title: 'Topic is required',
-        description: 'Please enter a topic to generate ideas.',
+        variant: "destructive",
+        title: "Topic is required",
+        description: "Please enter a topic to generate ideas.",
       });
       return;
     }
@@ -94,11 +96,11 @@ function BlogIdeaGenerator() {
       const result = await generateBlogPost({ topic });
       setIdeas(result.blogPostIdeas);
     } catch (error) {
-      console.error('Blog post generation error:', error);
+      console.error("Blog post generation error:", error);
       toast({
-        variant: 'destructive',
-        title: 'Error',
-        description: 'Failed to generate blog post ideas.',
+        variant: "destructive",
+        title: "Error",
+        description: "Failed to generate blog post ideas.",
       });
     } finally {
       setIsLoading(false);
@@ -117,7 +119,10 @@ function BlogIdeaGenerator() {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <form onSubmit={handleSubmit} className="flex flex-col gap-4 sm:flex-row">
+        <form
+          onSubmit={handleSubmit}
+          className="flex flex-col gap-4 sm:flex-row"
+        >
           <Input
             value={topic}
             onChange={(e) => setTopic(e.target.value)}
@@ -155,7 +160,7 @@ export default function BlogPage() {
         transition={{ duration: 0.8 }}
       >
         <h1 className="text-3xl font-bold tracking-tight text-primary sm:text-4xl">
-          Apex Digital Blog
+          ApexTek Blog
         </h1>
         <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
           Insights on technology, software development, and IT strategy.
@@ -191,10 +196,14 @@ export default function BlogPage() {
                       <CardDescription>{post.date}</CardDescription>
                     </CardHeader>
                     <CardContent>
-                      <p className="text-muted-foreground">{post.description}</p>
+                      <p className="text-muted-foreground">
+                        {post.description}
+                      </p>
                     </CardContent>
-                     <CardFooter>
-                      <span className="text-sm font-medium text-accent">Read more →</span>
+                    <CardFooter>
+                      <span className="text-sm font-medium text-accent">
+                        Read more →
+                      </span>
                     </CardFooter>
                   </Card>
                 </Link>
@@ -202,17 +211,13 @@ export default function BlogPage() {
             ))}
           </motion.div>
         </div>
-        
-        <motion.div
-          className="mt-8"
-          variants={itemVariants}
-        >
-           <h2 className="text-2xl font-bold tracking-tight text-primary sm:text-3xl mb-8">
+
+        <motion.div className="mt-8" variants={itemVariants}>
+          <h2 className="text-2xl font-bold tracking-tight text-primary sm:text-3xl mb-8">
             Content Tools
           </h2>
           <BlogIdeaGenerator />
         </motion.div>
-
       </motion.div>
     </div>
   );

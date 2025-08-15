@@ -1,5 +1,5 @@
-import Link from 'next/link';
-import { Github, Linkedin, Mountain, Twitter } from 'lucide-react';
+import Link from "next/link";
+import { Github, Linkedin, Mountain, Twitter } from "lucide-react";
 
 export function Footer() {
   return (
@@ -9,7 +9,7 @@ export function Footer() {
           <div className="space-y-4">
             <Link href="/" className="flex items-center gap-2 font-bold">
               <Mountain className="h-6 w-6 text-primary" />
-              <span className="text-lg">Apex Digital</span>
+              <span className="text-lg">ApexTek</span>
             </Link>
             <p className="text-sm text-muted-foreground">
               Modern IT solutions for ambitious businesses.
@@ -45,7 +45,7 @@ export function Footer() {
                   Portfolio
                 </Link>
               </li>
-               <li>
+              <li>
                 <Link
                   href="/startups"
                   className="text-muted-foreground hover:text-primary"
@@ -75,12 +75,18 @@ export function Footer() {
             <h3 className="font-semibold">Legal</h3>
             <ul className="mt-4 space-y-2 text-sm">
               <li>
-                <Link href="#" className="text-muted-foreground hover:text-primary">
+                <Link
+                  href="#"
+                  className="text-muted-foreground hover:text-primary"
+                >
                   Privacy Policy
                 </Link>
               </li>
               <li>
-                <Link href="#" className="text-muted-foreground hover:text-primary">
+                <Link
+                  href="#"
+                  className="text-muted-foreground hover:text-primary"
+                >
                   Terms of Service
                 </Link>
               </li>
@@ -88,7 +94,7 @@ export function Footer() {
           </div>
         </div>
         <div className="mt-8 border-t border-white/10 pt-8 text-center text-sm text-muted-foreground">
-          © {new Date().getFullYear()} Apex Digital. All rights reserved.
+          © {new Date().getFullYear()} ApexTek. All rights reserved.
         </div>
       </div>
     </footer>
