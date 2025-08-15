@@ -1,0 +1,108 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer base {
+  :root {
+    --background: 240 10% 98%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 240 10% 98%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 240 10% 98%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 240 5% 90%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 240 5% 90%;
+    --muted-foreground: 240 4% 46%;
+    --accent: 207 90% 54%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 240 6% 90%;
+    --input: 240 6% 90%;
+    --ring: 222.2 84% 4.9%;
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    --background: 220 20% 5%;
+    --foreground: 210 40% 98%;
+    --card: 220 20% 10%;
+    --card-foreground: 210 40% 98%;
+    --popover: 220 20% 5%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 225 20% 15%;
+    --secondary: 217 33% 17%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 207 90% 54%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217 33% 22%;
+    --input: 217 33% 22%;
+    --ring: 207 90% 54%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  .glassmorphic {
+      @apply bg-black/30 backdrop-blur-sm border border-white/10;
+  }
+
+  .dark .glassmorphic {
+      @apply bg-black/30 backdrop-blur-sm border border-white/10;
+  }
+
+  :root .glassmorphic {
+      @apply bg-white/30 backdrop-blur-sm border-black/10;
+  }
+
+
+  .glow-border {
+      position: relative;
+      overflow: hidden;
+  }
+
+  .glow-border::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border-radius: inherit;
+      padding: 1px;
+      background: linear-gradient(120deg, hsl(var(--accent)/0.5), transparent, hsl(var(--accent)/0.5));
+      -webkit-mask: 
+          linear-gradient(#fff 0 0) content-box,
+          linear-gradient(#fff 0 0);
+      -webkit-mask-composite: destination-out;
+      mask-composite: exclude;
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+  }
+
+  .glow-border:hover::before {
+      opacity: 1;
+  }
+
+  .glow-border-always-on::before {
+      opacity: 1;
+  }
+}
