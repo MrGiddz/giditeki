@@ -114,7 +114,7 @@ export default function PortfolioPage() {
         {projects.map((project) => (
           <motion.div key={project.slug} variants={itemVariants}>
             <Link href={`/portfolio/${project.slug}`} className="group">
-              <Card className="overflow-hidden h-full transition-all group-hover:shadow-lg group-hover:-translate-y-1 glassmorphic glow-border">
+              <Card className="overflow-hidden h-full glassmorphic glow-border">
                 <Image
                   src={project.image}
                   alt={project.title}

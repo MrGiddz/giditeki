@@ -74,7 +74,8 @@ export default function StartupsPage() {
       <motion.div
         className="text-center"
         initial="hidden"
-        animate="visible"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.1 }}
         variants={itemVariants}
         transition={{ duration: 0.8 }}
       >
@@ -90,7 +91,7 @@ export default function StartupsPage() {
         className="mt-16"
         variants={sectionVariants}
         initial="hidden"
-        animate="visible"
+        whileInView="visible"
         viewport={{ once: true, amount: 0.1 }}
       >
         <motion.div
@@ -116,29 +117,64 @@ export default function StartupsPage() {
       </motion.section>
 
       <motion.section
-        className="mt-20 py-20 sm:py-24 bg-card rounded-lg glow-border"
+        className="mt-20 py-20 sm:py-24"
         variants={sectionVariants}
         initial="hidden"
-        animate="visible"
+        whileInView="visible"
         viewport={{ once: true, amount: 0.1 }}
       >
         <div className="container mx-auto px-4">
             <h2 className="text-center text-3xl font-bold tracking-tight text-primary sm:text-4xl">Our Partnership Process</h2>
             <p className="mx-auto mt-4 max-w-2xl text-center text-lg text-muted-foreground">A proven path from a great idea to a market-leading product.</p>
-            <motion.div className="relative mt-12" variants={listVariants}>
-                <div className="absolute left-1/2 top-4 hidden w-px bg-border md:block h-full -translate-x-1/2"></div>
+            <div className="relative mt-12">
+              <div
+                className="absolute left-1/2 top-4 hidden h-[calc(100%-2rem)] w-px -translate-x-1/2 bg-border md:block"
+                aria-hidden="true"
+              ></div>
+              <motion.div
+                className="space-y-12"
+                variants={listVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.2 }}
+              >
                 {processSteps.map((step, index) => (
-                    <motion.div key={index} className="relative md:grid md:grid-cols-2 md:gap-12 items-center mb-12" variants={itemVariants}>
-                        <div className={`md:text-right ${index % 2 === 0 ? 'md:pr-12' : 'md:pl-12 md:col-start-2'}`}>
-                           <h3 className="text-2xl font-bold text-primary">{step.title}</h3>
-                           <p className="text-muted-foreground mt-2">{step.description}</p>
+                  <motion.div
+                    key={index}
+                    className="relative"
+                    variants={itemVariants}
+                  >
+                    <div className="flex flex-col items-center gap-4 md:flex-row">
+                      <div
+                        className={`flex w-full items-center justify-start md:w-1/2 ${
+                          index % 2 === 0 ? 'md:justify-end md:text-right' : ''
+                        }`}
+                      >
+                         <div
+                          className={`w-full space-y-2 md:max-w-sm ${
+                            index % 2 === 0 ? 'md:pr-12' : 'md:pl-12 md:order-2'
+                          }`}
+                        >
+                          <h3 className="text-2xl font-bold text-primary">
+                            {step.title}
+                          </h3>
+                          <p className="text-muted-foreground">
+                            {step.description}
+                          </p>
                         </div>
-                         <div className={`hidden md:flex items-center justify-center ${index % 2 === 0 ? 'md:col-start-1 md:row-start-1 md:justify-end' : 'md:col-start-2'}`}>
-                            <div className="z-10 flex items-center justify-center w-12 h-12 rounded-full bg-accent text-accent-foreground font-bold text-lg shadow-lg">{index + 1}</div>
-                        </div>
-                    </motion.div>
+                      </div>
+
+                      <div className="z-10 flex h-12 w-12 items-center justify-center rounded-full bg-accent text-lg font-bold text-accent-foreground shadow-lg shrink-0">
+                        {index + 1}
+                      </div>
+
+                      <div className="hidden md:block md:w-1/2"></div>
+
+                    </div>
+                  </motion.div>
                 ))}
-            </motion.div>
+              </motion.div>
+            </div>
         </div>
       </motion.section>
 
@@ -147,7 +183,7 @@ export default function StartupsPage() {
         className="mt-20 text-center"
         variants={sectionVariants}
         initial="hidden"
-        animate="visible"
+        whileInView="visible"
         viewport={{ once: true, amount: 0.1 }}
       >
          <h2 className="text-3xl font-bold tracking-tight text-primary sm:text-4xl">Ready to build the future?</h2>

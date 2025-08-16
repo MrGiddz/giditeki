@@ -1,67 +1,94 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import * as React from 'react';
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
 import {
   Sheet,
   SheetContent,
   SheetTrigger,
   SheetClose,
-} from "@/components/ui/sheet";
-import { Menu, Mountain } from "lucide-react";
-import * as React from "react";
-import { ModeToggle } from "./mode-toggle";
-import { usePathname } from "next/navigation";
-import { motion } from "framer-motion";
-import { cn } from "@/lib/utils";
+} from '@/components/ui/sheet';
+import { Menu } from 'lucide-react';
+import { ModeToggle } from '@/components/layout/mode-toggle';
+import { usePathname } from 'next/navigation';
+import { cn } from '@/lib/utils';
+import { motion } from 'framer-motion';
 
-const mainNav = [
-  { href: "/#services", label: "Services" },
-  { href: "/portfolio", label: "Portfolio" },
-  { href: "/startups", label: "For Startups" },
-  { href: "/blog", label: "Blog" },
-  { href: "/calculator", label: "Calculator" },
+const navLinks = [
+  { href: '/#services', label: 'Services' },
+  { href: '/portfolio', label: 'Portfolio' },
+  { href: '/startups', label: 'For Startups' },
+  { href: '/blog', label: 'Blog' },
+  { href: '/calculator', label: 'Cost Calculator' },
 ];
 
+function KrestCoreLogo() {
+    return (
+        <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6 text-primary"
+        >
+            <path
+                d="M12 2L2 7V17L12 22L22 17V7L12 2Z"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinejoin="round"
+            />
+            <path
+                d="M22 7L12 12M12 22V12M12 12L2 7M12 12H17L22 9.5"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+            />
+        </svg>
+    )
+}
+
 export function Header() {
-  const [isScrolled, setIsScrolled] = React.useState(false);
   const pathname = usePathname();
+  const [isScrolled, setIsScrolled] = React.useState(false);
 
   React.useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
     };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
     <header
       className={`sticky top-0 z-50 w-full transition-all duration-300 ${
         isScrolled
-          ? "border-b border-border bg-background/80 backdrop-blur-sm"
-          : "bg-transparent"
+          ? 'border-b border-border bg-background/80 backdrop-blur-sm'
+          : 'bg-transparent'
       }`}
     >
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         <Link href="/" className="flex items-center gap-2 font-bold">
-          <Mountain className="h-6 w-6 text-primary" />
-          <span className="text-lg">ApexTek</span>
+          <KrestCoreLogo />
+          <span className="text-lg">KrestCore</span>
         </Link>
         <nav className="hidden items-center gap-6 md:flex">
-          {mainNav.map((item) => {
-            const isActive = item.href.startsWith("/#")
-              ? pathname === "/"
+          {navLinks.map((item) => {
+            const isActive = item.href.startsWith('/#')
+              ? pathname === '/'
               : pathname.startsWith(item.href);
             return (
               <Link
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  "relative text-sm font-medium transition-colors",
+                  'relative text-sm font-medium transition-colors',
                   isActive
-                    ? "text-primary"
-                    : "text-muted-foreground hover:text-primary"
+                    ? 'text-primary'
+                    : 'text-muted-foreground hover:text-primary'
                 )}
               >
                 {item.label}
@@ -96,11 +123,11 @@ export function Header() {
                   href="/"
                   className="mb-8 flex items-center gap-2 font-bold"
                 >
-                  <Mountain className="h-6 w-6 text-primary" />
-                  <span className="text-lg">ApexTek</span>
+                  <KrestCoreLogo />
+                  <span className="text-lg">KrestCore</span>
                 </Link>
                 <div className="flex flex-col gap-4">
-                  {mainNav.map((item) => (
+                  {navLinks.map((item) => (
                     <SheetClose key={item.href} asChild>
                       <Link
                         href={item.href}

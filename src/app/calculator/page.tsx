@@ -123,7 +123,8 @@ export default function CalculatorPage() {
       <motion.div
         className="text-center"
         initial="hidden"
-        animate="visible"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.1 }}
         variants={itemVariants}
         transition={{ duration: 0.8 }}
       >
@@ -131,7 +132,7 @@ export default function CalculatorPage() {
           Project Cost Calculator
         </h1>
         <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
-          Get a ballpark estimate for your project. This is not a formal quote.
+          Get a ballpark estimate for your project. This tool provides a rough idea of the potential investment based on common project types and complexity. For a precise quote, please contact us for a detailed consultation.
         </p>
       </motion.div>
 
@@ -140,14 +141,15 @@ export default function CalculatorPage() {
           className="space-y-8 lg:col-span-2"
           variants={sectionVariants}
           initial="hidden"
-          animate="visible"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
         >
           <motion.div variants={itemVariants}>
             <Card className="glassmorphic glow-border">
               <CardHeader>
                 <CardTitle>1. Project Type</CardTitle>
                 <CardDescription>
-                  What kind of project are you planning?
+                  What kind of project are you planning? Web applications are great for broad reach, while mobile apps offer a dedicated user experience.
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -172,7 +174,7 @@ export default function CalculatorPage() {
               <CardHeader>
                 <CardTitle>2. Complexity</CardTitle>
                 <CardDescription>
-                  How complex will the project be?
+                  How complex will the project be? A simple project may have basic features, while a complex one could involve third-party integrations, custom APIs, and advanced security.
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -203,7 +205,7 @@ export default function CalculatorPage() {
               <CardHeader>
                 <CardTitle>3. Number of Features</CardTitle>
                 <CardDescription>
-                  Estimate the number of core features.
+                  Estimate the number of core features (e.g., user authentication, dashboards, payment processing). More features will increase the development time and cost.
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -225,7 +227,7 @@ export default function CalculatorPage() {
               <CardHeader>
                 <CardTitle>4. Timeline</CardTitle>
                 <CardDescription>
-                  What is your desired project timeline?
+                   What is your desired project timeline? A rush timeline requires more resources and may increase the cost.
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -248,7 +250,8 @@ export default function CalculatorPage() {
           <motion.div 
             className="sticky top-24"
             initial="hidden"
-            animate="visible"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
             variants={itemVariants}
             transition={{ duration: 0.5, delay: 0.8 }}
           >
